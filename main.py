@@ -7,13 +7,14 @@ from src.data.source import DataSource
 
 DATA_PATH = "./data/starclusters.csv"
 
+
 def main() -> None:
 
     data = load_cluster_data(DATA_PATH)
     data = DataSource(data)
 
     app = Dash(external_stylesheets=[BOOTSTRAP])
-    app.title = "Star Clusters"
+    app.title = "Title"
     app.layout = create_layout(app, data)
     app.run()
 

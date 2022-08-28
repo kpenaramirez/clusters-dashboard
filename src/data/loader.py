@@ -8,6 +8,7 @@ Preprocessor = Callable[[pd.DataFrame], pd.DataFrame]
 
 
 class DataSchema:
+    STARID = "star_id"
     CLUSTER_NAME = "cluster"
     RA = "ra"
     DEC = "dec"
@@ -39,18 +40,17 @@ def create_jk_color_index(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_cluster_data(path: str) -> pd.DataFrame:
-    """ Load data from the CSV file """
+    """Load data from the CSV file"""
 
     data = pd.read_csv(
         path,
         dtype={
             DataSchema.CLUSTER_NAME: str,
-
-        }
+        },
     )
 
     preprocessor = compose(
         create_jk_color_index,
     )
-    
+
     return preprocessor(data)

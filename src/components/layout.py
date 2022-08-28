@@ -5,9 +5,11 @@ from src.components import (
     spatialpos_graph,
     propmotion_graph,
     cmd_graph,
+    probability_rangeselector,
 )
 
 from ..data.source import DataSource
+
 
 def create_layout(app: Dash, source: DataSource) -> html.Div:
     return html.Div(
@@ -18,9 +20,11 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.Div(
                 className="dropdown-cointainer",
                 children=[
-                    cluster_selection_dropdown.render(app, source)
-                ]
+                    cluster_selection_dropdown.render(app, source),
+                    probability_rangeselector.render(app),
+                ],
             ),
+            html.Pre(id="test_output_pre"),  # TODO: Remove
             spatialpos_graph.render(app, source),
             propmotion_graph.render(app, source),
             cmd_graph.render(app, source),
