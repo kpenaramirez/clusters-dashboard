@@ -1,9 +1,14 @@
 import inspect
+from functools import partial, reduce
+from typing import Callable
+
 import pandas as pd
+
+Preprocessor = Callable[[pd.DataFrame], pd.DataFrame]
 
 
 class DataSchema:
-    CLUSTER = "cluster"
+    CLUSTER_NAME = "cluster"
     RA = "ra"
     DEC = "dec"
     PMRA = "pmra"
@@ -21,17 +26,31 @@ class DataSchema:
     EH = "eh"
     MK = "mk"
     PROBABILITY = "probability"
+    J_K = "mj-mk"
+
+
+def compose(*functions: Preprocessor) -> Preprocessor:
+    return reduce(lambda f, g: lambda x: g(f(x)), functions)
+
+
+def create_jk_color_index(df: pd.DataFrame) -> pd.DataFrame:
+    df[DataSchema.J_K] = df[DataSchema.MJ] - df[DataSchema.MK]
+    return df
 
 
 def load_cluster_data(path: str) -> pd.DataFrame:
-    """ Load the data from the CSV file """
-    
-    # check all columns/attributes defined in DataSchema are present in the csv file
-    attributes = inspect.getmembers(DataSchema, lambda x: not(inspect.isroutine(x)))
+    """ Load data from the CSV file """
 
     data = pd.read_csv(
         path,
-        usecols=[x[1] for x in attributes if not(x[0].startswith('__') and x[0].endswith('__'))]
+        dtype={
+            DataSchema.CLUSTER_NAME: str,
+
+        }
+    )
+
+    preprocessor = compose(
+        create_jk_color_index,
     )
     
-    return data
+    return preprocessor(data)
