@@ -1,4 +1,3 @@
-import inspect
 from functools import partial, reduce
 from typing import Callable
 

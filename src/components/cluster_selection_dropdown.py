@@ -13,7 +13,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             dcc.Dropdown(
                 id=ids.CLUSTER_SELECTION_DROPDOWN,
                 options=to_dropdown_options(source.all_clusters),
-                value=source.unique_clusters,
+                value=source.unique_clusters,  # TODO: check if this is correct. Maybe source.unique_clusters[0]?
                 multi=False,
             ),
         ]
