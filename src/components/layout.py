@@ -24,9 +24,13 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     probability_rangeselector.render(app),
                 ],
             ),
-            html.Pre(id="test_output_pre"),  # TODO: Remove
-            spatialpos_graph.render(app, source),
-            propmotion_graph.render(app, source),
-            cmd_graph.render(app, source),
+            html.Div(
+                className="graph-container",
+                children=[
+                    spatialpos_graph.render(app, source),
+                    propmotion_graph.render(app, source),
+                    cmd_graph.render(app, source),
+                ],
+            ),
         ],
     )
