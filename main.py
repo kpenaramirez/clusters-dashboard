@@ -16,8 +16,12 @@ def main() -> None:
     app = Dash(external_stylesheets=[BOOTSTRAP])
     app.title = "Title"
     app.layout = create_layout(app, data)
-    app.run()
+    
+    return app
 
+
+app = main()
+server = app.server
 
 if __name__ == "__main__":
-    main()
+     app.run_server(host="0.0.0.0", port=8050, debug=False)
