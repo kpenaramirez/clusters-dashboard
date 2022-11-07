@@ -13,4 +13,4 @@ Interactive visualization of star clusters
 
 ```docker build -t clusterdashboard .```  
 
-```docker run -d -p 8050:8050 clusterdashboard```
+```docker run -d -p 8050:8050 --restart unless-stopped clusterdashboard```
