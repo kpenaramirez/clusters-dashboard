@@ -13,7 +13,7 @@ def main() -> None:
     data = DataSource(data)
 
     app = Dash(external_stylesheets=[BOOTSTRAP])
-    app.title = r"Clusters from Peña Ramírez et al. 2020 and 2021"
+    app.title = r"Clusters visualization tool"
     app.layout = create_layout(app, data)
     
     return app
