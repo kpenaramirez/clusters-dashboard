@@ -41,11 +41,18 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
         fig = px.scatter(data.get_data, **scatter_params)
 
+        fig.update_layout(
+            xaxis_title=r'$\mu_\alpha \, \text{(mas/year)}$',
+            yaxis_title=r'$\mu_\delta \, \text{(mas/year)}$',
+            coloraxis_colorbar_title=r'$\varpi \, \text{(mas)}$',
+            coloraxis_colorbar_title_side="top",
+        )
+
         fig.update_traces(
             error_x=dict(color="gray", width=0, thickness=1),
             error_y=dict(color="gray", width=0, thickness=1),
         )
 
-        return html.Div(dcc.Graph(figure=fig), id=ids.PROPMOTION_GRAPH)
+        return html.Div(dcc.Graph(mathjax=True, figure=fig), id=ids.PROPMOTION_GRAPH)
 
     return html.Div(id=ids.PROPMOTION_GRAPH)

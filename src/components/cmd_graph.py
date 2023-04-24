@@ -32,8 +32,16 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.MK,
             ),
         )
+        fig.update_layout(
+            xaxis_title=r'$ J - K_S \, \text{(mag)}$',
+            yaxis_title=r'$K_S \, \text{(mag)}$',
+        )
+
+
         fig["layout"]["yaxis"]["autorange"] = "reversed"
         # fig["layout"]["yaxis"]["scaleanchor"] = "x"
-        return html.Div(dcc.Graph(figure=fig), id=ids.CMD_GRAPH)
+
+
+        return html.Div(dcc.Graph(mathjax=True, figure=fig), id=ids.CMD_GRAPH)
 
     return html.Div(id=ids.CMD_GRAPH)

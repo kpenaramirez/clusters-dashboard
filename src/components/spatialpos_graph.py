@@ -6,7 +6,6 @@ from ..data.loader import DataSchema
 from ..data.source import DataSource
 from . import ids
 
-import json
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
@@ -33,7 +32,13 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.DEC,
             ),
         )
+
+        fig.update_layout(
+            xaxis_title=r'$\alpha \, \text{(deg)}$',
+            yaxis_title=r'$\delta \, \text{(deg)}$',
+        )
         
-        return html.Div(dcc.Graph(figure=fig), id=ids.SPATIALPOS_GRAPH)
+        return html.Div(dcc.Graph(mathjax=True, figure=fig), id=ids.SPATIALPOS_GRAPH)
+
 
     return html.Div(id=ids.SPATIALPOS_GRAPH)
