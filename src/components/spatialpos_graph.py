@@ -31,7 +31,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.RA,
                 DataSchema.DEC,
             ),
-            title="Spatial position",
+            title="Spatial positions",
         )
 
         fig.update_layout(

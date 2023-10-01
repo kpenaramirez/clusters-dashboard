@@ -28,7 +28,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.PMRA,
                 DataSchema.PMDEC,
             ],
-            title="Proper motion",
+            title="Proper motions",
         )
         # Add extra params if the data has valid parallax data
         # print(data.count_valid_rows_by_column(column_name = "plx"))
