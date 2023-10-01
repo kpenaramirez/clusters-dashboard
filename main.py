@@ -12,7 +12,10 @@ def main() -> None:
     data = load_cluster_data(DATA_PATH)
     data = DataSource(data)
 
-    app = Dash(external_stylesheets=[BOOTSTRAP])
+    app = Dash(
+        __name__,
+        external_stylesheets=[BOOTSTRAP]
+    )
     app.title = r"Clusters visualization tool"
     app.layout = create_layout(app, data)
     

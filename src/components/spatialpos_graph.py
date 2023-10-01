@@ -31,11 +31,14 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.RA,
                 DataSchema.DEC,
             ),
+            title="Spatial position",
         )
 
         fig.update_layout(
             xaxis_title=r'$\alpha \, \text{(deg)}$',
             yaxis_title=r'$\delta \, \text{(deg)}$',
+            coloraxis_colorbar_title=r'Probability',
+            coloraxis_colorbar_title_side="top",
         )
         
         return html.Div(dcc.Graph(mathjax=True, figure=fig), id=ids.SPATIALPOS_GRAPH)

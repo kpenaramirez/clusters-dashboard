@@ -31,10 +31,13 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 DataSchema.J_K,
                 DataSchema.MK,
             ),
+            title="Color-magnitude diagram",
         )
         fig.update_layout(
             xaxis_title=r'$ J - K_S \, \text{(mag)}$',
             yaxis_title=r'$K_S \, \text{(mag)}$',
+            coloraxis_colorbar_title="Probability",
+            coloraxis_colorbar_title_side="top",
         )
 
 
