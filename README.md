@@ -14,3 +14,15 @@ Interactive visualization of star clusters
 ```docker build -t clusterdashboard .```  
 
 ```docker run -d -p 8050:8050 --restart unless-stopped clusterdashboard```
+
+## Other util docker commands
+
+```docker ps``` - list running containers
+
+```docker stop <container id>``` - stop a running container
+
+```docker rm <container id>``` - remove a container
+
+```docker images``` - list images
+
+```docker rmi <image id>``` - remove an image
